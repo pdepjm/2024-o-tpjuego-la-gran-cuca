@@ -1,16 +1,33 @@
 import wollok.game.*
 
-import pepita.*
+import homero.*
 
-program PepitaGame {
-	game.title("Pepita")
+
+program homeroGame{
+	game.title("Homero")
 	game.height(10)
-	game.width(10)
+	game.width(15)
 	game.cellSize(100)
 
-	game.addVisual(pepita)
+	const rosquilla = new Rosquilla()	
+	const banana = new Banana()
 
-	keyboard.w().onPressDo({ pepita.fly(1) })
+	game.boardGround("springfield.png")
+	game.addVisual(puntosHomero)
+	game.addVisual(homero)
+	game.addVisual(rosquilla)
+	game.addVisual(banana)
+
+	game.onCollideDo(homero, {rosquilla => homero.alterarPuntos(rosquilla.puntos())})
+	game.onCollideDo(homero, {rosquilla => homero.alterarVelocidad(rosquilla.velocidad())})
+	game.onCollideDo(homero, {rosquilla => game.removeVisual(rosquilla)})
+	game.onCollideDo(homero, {banana => homero.alterarPuntos(banana.puntos())})
+	game.onCollideDo(homero, {banana => homero.alterarVelocidad(banana.velocidad())})
+	game.onCollideDo(homero, {banana => game.removeVisual(banana)})
+
+
+	keyboard.a().onPressDo({ homero.moverseIzquierda()})
+	keyboard.d().onPressDo({ homero.moverseDerecha()})
 
 	game.start()
 }

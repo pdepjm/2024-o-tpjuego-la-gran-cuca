@@ -1,9 +1,8 @@
-import pepita.*
+import homero.*
+import wollok.game.*
 
-describe "group of tests for pepita" {
-
-  test "pepita has initial energy" {
-    assert.equals(100, pepita.energy())
+describe "homero" {
+  test "tests para el game de homero" {
+    
   }
-
 }

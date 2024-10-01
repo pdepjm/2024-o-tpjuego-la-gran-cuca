@@ -1,16 +1,19 @@
-#  (reemplazar nombre de juego acá) 
+#  El Sueño del Levantapalas: La Carrera por el Morfi
 
 UTN - Facultad Regional Buenos Aires - Materia Paradigmas de Programación
 
 ## Equipo de desarrollo: 
 
-- completar...
-- completar...
+- Bermejo Fernández, Matías.
+- Corro Molas, Agustin.
+- Britos, Aylen.
+- Dimotta, Cecilia.
+- Giangrandi, Agostino.
  
 
 ## Capturas 
 
-![pepita](assets/golondrina.png)
+![homeroGame](image.png)
 
 ## Reglas de Juego / Instrucciones
 
@@ -18,5 +21,6 @@ UTN - Facultad Regional Buenos Aires - Materia Paradigmas de Programación
 
 ## Controles:
 
-- `W` para...
+- `A` para moverse a la izquierda.
+- `D` para moverse a la derecha.
 
