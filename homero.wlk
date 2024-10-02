@@ -41,6 +41,7 @@ object homero{
   method velocidad() = velocidad
 }
 
+// Averiguar cómo poder configurar el tamaño de pixeles que abarca un objeto (en este caso, la Rosquilla y la Banana)
 class Rosquilla {
   const position = new MutablePosition(x=0, y=0)
   const puntos = 10
@@ -53,7 +54,7 @@ class Rosquilla {
 }
 
 class Banana {
-  const position = new MutablePosition(x=game.width()-2, y=0)
+  const position = new MutablePosition(x=game.width()-3, y=0)
   const puntos = -5
   const velocidad = -1 
 
