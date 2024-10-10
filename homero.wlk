@@ -10,22 +10,54 @@ object puntosHomero {
 
 }
 
+/* NO ANDA JAJA
+object mapMoves {
+  const limitRightPosition = new MutablePosition (x=14, y=0)
+  const limitLeftPosition = new MutablePosition (x=0, y=0)
+
+method movimiento(){
+    if (homero.position != limitLeftPosition){
+      homero.position.goLeft(homero.velocidad)
+    }
+    if (homero.position != limitRightPosition)
+    {
+      homero.position.goRight(homero.velocidad)
+    }
+  }
+}
+*/
+
 object homero{
   var puntos = 0
   var velocidad = 1
   const position = new MutablePosition(x=7, y=0)
+  const limitRightPosition = new MutablePosition (x=14, y=0)
+  const limitLeftPosition = new MutablePosition (x=0, y=0)
 
   method image() = "homero.png"
   method position() = position
 
+//
+  method moverseIzquierda(){
+    if(position != limitLeftPosition)
+    position.goLeft(velocidad)
+  }  
+
+  method moverseDerecha(){
+    if(position != limitRightPosition){
+    position.goRight(velocidad)
+    }
+  }
+//
+
+/*
   method moverseIzquierda(){
     position.goLeft(velocidad)
-  }
-
+  }  
   method moverseDerecha(){
     position.goRight(velocidad)
   }
-
+*/
   method alterarPuntos(nuevosPuntos){
     puntos += nuevosPuntos
     puntos = puntos.max(0)

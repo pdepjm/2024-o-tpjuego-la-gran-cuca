@@ -25,9 +25,8 @@ program homeroGame{
 	game.onCollideDo(homero, {banana => homero.alterarVelocidad(banana.velocidad())})
 	game.onCollideDo(homero, {banana => game.removeVisual(banana)})
 
-
-	keyboard.a().onPressDo({ homero.moverseIzquierda()})
-	keyboard.d().onPressDo({ homero.moverseDerecha()})
+	keyboard.a().onPressDo({homero.moverseIzquierda()})
+	keyboard.d().onPressDo({homero.moverseDerecha()})
 
 	game.start()
 }
