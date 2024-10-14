@@ -2,31 +2,57 @@ import wollok.game.*
 
 import homero.*
 
-
 program homeroGame{
-	game.title("Homero")
-	game.height(10)
-	game.width(15)
+	game.title("Homero en Springfield")
+	game.height(12)
+	game.width(18)
 	game.cellSize(100)
 
 	const rosquilla = new Rosquilla()	
 	const banana = new Banana()
+	const plutonio = new Plutonio()
+	const cerverza = new Cerveza()
+	const choripan = new Choripan()
+	const mate = new Mate()
+	const te = new Te()
+	const ensalada = new Ensalada()
+	const guiso = new Guiso()
 
+	
 	game.boardGround("springfield.png")
 	game.addVisual(puntosHomero)
 	game.addVisual(homero)
 	game.addVisual(rosquilla)
 	game.addVisual(banana)
+	game.addVisual(plutonio)
+	game.addVisual(choripan)
+	game.addVisual(mate)
+	game.addVisual(te)
+	game.addVisual(ensalada)
+	game.addVisual(guiso)
 
-	game.onCollideDo(homero, {rosquilla => homero.alterarPuntos(rosquilla.puntos())})
-	game.onCollideDo(homero, {rosquilla => homero.alterarVelocidad(rosquilla.velocidad())})
-	game.onCollideDo(homero, {rosquilla => game.removeVisual(rosquilla)})
-	game.onCollideDo(homero, {banana => homero.alterarPuntos(banana.puntos())})
-	game.onCollideDo(homero, {banana => homero.alterarVelocidad(banana.velocidad())})
-	game.onCollideDo(homero, {banana => game.removeVisual(banana)})
+	game.onTick(500, "baja", {rosquilla.bajar()})
+	game.onTick(1000, "baja", {banana.bajar()})
+	game.onTick(1500, "baja", {plutonio.bajar()})
+	game.onTick(1250, "baja", {cerverza.bajar()})
+	game.onTick(4500, "baja", {choripan.bajar()})
+	game.onTick(1100, "baja", {mate.bajar()})
+	game.onTick(2000, "baja", {te.bajar()})
+	game.onTick(2250, "baja", {ensalada.bajar()})
+	game.onTick(2500, "baja", {guiso.bajar()})
+
+
 
 	keyboard.a().onPressDo({homero.moverseIzquierda()})
 	keyboard.d().onPressDo({homero.moverseDerecha()})
+
+	keyboard.space().onPressDo { 
+		const colliders = game.colliders(homero)
+		colliders.head().interactua(homero)
+		homero.alterarPuntos(colliders.head().puntos())
+		homero.alterarVelocidad(colliders.head().velocidad())
+		game.removeVisual(colliders.head())
+	}
 
 	game.start()
 }
