@@ -6,5 +6,5 @@ import tableros.*
 
 program homeroGame{
 	nivel1.inciarFondo()
-	keyboard.space().onPressDo{nivel1.iniciarNivel()}
+	keyboard.space().onPressDo{nivel1.iniciarNivel()} 
 }

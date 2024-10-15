@@ -18,30 +18,19 @@ object nivel1 {
 
         game.start()
 
-        if(tiempo.timer() == 0 || homero.puntos() > 200){
-            game.addVisual(mensajeVictoria)
-            game.stop()
-        }else if (tiempo.timer() == 0){
-            game.addVisual(mensajeDerrota)
-            game.stop()
-        }
     }
 
     method iniciarNivel(){
+        game.onTick(1000, "restarSegundo", {tiempo.restarSegundo()})
         game.removeVisual(mensajes)
-        game.onTick(1000, "descontar tiempo", {tiempo.restarSegundo()})
-        game.onTick(1000, "tiempo en 0", {if(tiempo.timer() == 0) game.removeTickEvent("descontar tiempo")})
-        game.onTick(1000, "tiempo en 0", {if(tiempo.timer() == 0) game.removeTickEvent("baja")})
-        game.onTick(1000, "gano o no", {if(homero.puntos() > 200) game.addVisual(mensajeVictoria) else game.addVisual(mensajeDerrota)})
-
         comidas.forEach({comida => game.addVisual(comida)})
 
-        game.onTick(500, "baja", {rosquilla.bajar()})
+        game.onTick(250, "baja", {mate.bajar()})
+        game.onTick(500, "baja", {choripan.bajar()})
         game.onTick(1000, "baja", {banana.bajar()})
         game.onTick(750, "baja", {plutonio.bajar()})
         game.onTick(1250, "baja", {cerveza.bajar()})
-        game.onTick(250, "baja", {choripan.bajar()})
-        game.onTick(1500, "baja", {mate.bajar()})
+        game.onTick(1500, "baja", {rosquilla.bajar()})
         game.onTick(1750, "baja", {te.bajar()})
         game.onTick(2000, "baja", {ensalada.bajar()})
         game.onTick(2250, "baja", {guiso.bajar()})
@@ -56,14 +45,21 @@ object nivel1 {
             homero.alterarPuntos(colliders.head().puntos())
             homero.alterarVelocidad(colliders.head().velocidad())
             game.removeVisual(colliders.head())
-        }
-
-        if(tiempo.timer() == 0 || homero.puntos() > 200){
-            game.removeTickEvent("descontar tiempo")
-            game.removeTickEvent("baja")
+            if(homero.puntos() >= 100 || tiempo.timer() <= 0){
+                self.finalizarNivel()
+            }
         }
 
     }
 
+    method finalizarNivel(){
+        game.clear()
+        if(homero.puntos() < 100){
+            game.addVisual(mensajeDerrota)
+        }else{
+            game.addVisual(mensajeVictoria)
+        }
+    }
 }
+
 
