@@ -1,16 +1,6 @@
 import wollok.game.*
 import comida.*
 
-object puntosHomero {
-  const hom = homero
-  const position = new MutablePosition(x=9, y=10)
-
-  method position() = position
-
-  method text () = "Puntos: " + hom.puntos() + " Velocidad: " + hom.velocidad()
-
-}
-
 object homero{
   var puntos = 0
   var velocidad = 2

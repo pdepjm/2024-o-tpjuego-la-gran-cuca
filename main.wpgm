@@ -1,47 +1,10 @@
 import wollok.game.*
 import comida.*
 import homero.*
+import niveles.*
+import tableros.*
 
 program homeroGame{
-	game.title("Homero en Springfield")
-	game.height(12)
-	game.width(18)
-	game.cellSize(100)
-
-	game.boardGround("springfield.png")
-	game.addVisual(puntosHomero)
-	game.addVisual(homero)
-	game.addVisual(rosquilla)
-	game.addVisual(banana)
-	game.addVisual(plutonio)
-	game.addVisual(choripan)
-	game.addVisual(mate)
-	game.addVisual(te)
-	game.addVisual(ensalada)
-	game.addVisual(guiso)
-
-
-	game.onTick(500, "baja", {rosquilla.bajar()})
-	game.onTick(500, "baja", {banana.bajar()})
-	game.onTick(500, "baja", {plutonio.bajar()})
-	game.onTick(500, "baja", {cerveza.bajar()})
-	game.onTick(500, "baja", {choripan.bajar()})
-	game.onTick(500, "baja", {mate.bajar()})
-	game.onTick(500, "baja", {te.bajar()})
-	game.onTick(500, "baja", {ensalada.bajar()})
-	game.onTick(500, "baja", {guiso.bajar()})
-
-
-	keyboard.a().onPressDo({homero.moverseIzquierda()})
-	keyboard.d().onPressDo({homero.moverseDerecha()})
-
-	keyboard.space().onPressDo{
-		const colliders = game.colliders(homero)
-		colliders.head().interactua(homero)
-		homero.alterarPuntos(colliders.head().puntos())
-		homero.alterarVelocidad(colliders.head().velocidad())
-		game.removeVisual(colliders.head())
-	}
-
-	game.start()
+	nivel1.inciarFondo()
+	keyboard.space().onPressDo{nivel1.iniciarNivel()}
 }
