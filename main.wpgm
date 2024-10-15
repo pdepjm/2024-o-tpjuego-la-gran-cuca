@@ -1,5 +1,5 @@
 import wollok.game.*
-
+import comida.*
 import homero.*
 
 program homeroGame{
@@ -8,17 +8,6 @@ program homeroGame{
 	game.width(18)
 	game.cellSize(100)
 
-	const rosquilla = new Rosquilla()	
-	const banana = new Banana()
-	const plutonio = new Plutonio()
-	const cerverza = new Cerveza()
-	const choripan = new Choripan()
-	const mate = new Mate()
-	const te = new Te()
-	const ensalada = new Ensalada()
-	const guiso = new Guiso()
-
-	
 	game.boardGround("springfield.png")
 	game.addVisual(puntosHomero)
 	game.addVisual(homero)
@@ -31,22 +20,22 @@ program homeroGame{
 	game.addVisual(ensalada)
 	game.addVisual(guiso)
 
-	game.onTick(500, "baja", {rosquilla.bajar()})
-	game.onTick(1000, "baja", {banana.bajar()})
-	game.onTick(1500, "baja", {plutonio.bajar()})
-	game.onTick(1250, "baja", {cerverza.bajar()})
-	game.onTick(4500, "baja", {choripan.bajar()})
-	game.onTick(1100, "baja", {mate.bajar()})
-	game.onTick(2000, "baja", {te.bajar()})
-	game.onTick(2250, "baja", {ensalada.bajar()})
-	game.onTick(2500, "baja", {guiso.bajar()})
 
+	game.onTick(500, "baja", {rosquilla.bajar()})
+	game.onTick(500, "baja", {banana.bajar()})
+	game.onTick(500, "baja", {plutonio.bajar()})
+	game.onTick(500, "baja", {cerveza.bajar()})
+	game.onTick(500, "baja", {choripan.bajar()})
+	game.onTick(500, "baja", {mate.bajar()})
+	game.onTick(500, "baja", {te.bajar()})
+	game.onTick(500, "baja", {ensalada.bajar()})
+	game.onTick(500, "baja", {guiso.bajar()})
 
 
 	keyboard.a().onPressDo({homero.moverseIzquierda()})
 	keyboard.d().onPressDo({homero.moverseDerecha()})
 
-	keyboard.space().onPressDo { 
+	keyboard.space().onPressDo{
 		const colliders = game.colliders(homero)
 		colliders.head().interactua(homero)
 		homero.alterarPuntos(colliders.head().puntos())
