@@ -19,6 +19,7 @@ object homero{
       position.goRight(velocidad)
   }
 
+
   method alterarPuntos(nuevosPuntos){
     puntos += nuevosPuntos
     puntos = puntos.max(0)

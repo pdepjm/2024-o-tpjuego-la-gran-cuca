@@ -51,14 +51,15 @@ class Comida{
 }
 
 
-const rosquilla = new Comida(nombre="rosquilla", puntos=10, velocidad=1, accion={homero.poneteGrasoso()})
-const banana = new Comida(nombre="banana", puntos=-5, velocidad=-1, accion={homero.convertiteEnMono()})
-const plutonio = new Comida(nombre="plutonio", puntos=20, velocidad=1, accion={homero.poneteRadiactivo()})
-const choripan = new Comida(nombre="choripan", puntos=5, velocidad=-1, accion={homero.cometeUnChoripan()})
-const mate = new Comida(nombre="mate", puntos=100, velocidad=2, accion={homero.tomateUnMate()})
-const cerveza = new Comida(nombre="cerveza", puntos=50, velocidad=-2, accion={homero.tomateUnaCerveza()})
-const te = new Comida(nombre="te", puntos=-100, velocidad=-1, accion={homero.tomateUnTe()})
-const ensalada = new Comida(nombre="ensalada", puntos=-20, velocidad=1, accion={homero.comeEnsalada()})
-const guiso = new Comida(nombre="guiso", puntos=80, velocidad=-2, accion={homero.poneteObeso()})
+const rosquilla = new Comida(nombre="rosquilla", puntos=5, velocidad=1, accion={homero.poneteGrasoso()})
+const banana = new Comida(nombre="banana", puntos=-3, velocidad=-1, accion={homero.convertiteEnMono()})
+const plutonio = new Comida(nombre="plutonio", puntos=15, velocidad=1, accion={homero.poneteRadiactivo()})
+const choripan = new Comida(nombre="choripan", puntos=7, velocidad=-1, accion={homero.cometeUnChoripan()})
+const mate = new Comida(nombre="mate", puntos=20, velocidad=2, accion={homero.tomateUnMate()})
+const cerveza = new Comida(nombre="cerveza", puntos=15, velocidad=-2, accion={homero.tomateUnaCerveza()})
+const te = new Comida(nombre="te", puntos=-50, velocidad=-1, accion={homero.tomateUnTe()})
+const ensalada = new Comida(nombre="ensalada", puntos=-15, velocidad=1, accion={homero.comeEnsalada()})
+const guiso = new Comida(nombre="guiso", puntos=15, velocidad=-2, accion={homero.poneteObeso()})
+
 
 const comidas = [rosquilla, banana, plutonio, choripan, mate, cerveza, te, ensalada, guiso]

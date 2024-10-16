@@ -24,7 +24,7 @@ object nivel1 {
         game.onTick(1000, "restarSegundo", {tiempo.restarSegundo()})
         game.removeVisual(mensajes)
         comidas.forEach({comida => game.addVisual(comida)})
-
+/*
         game.onTick(250, "baja", {mate.bajar()})
         game.onTick(500, "baja", {choripan.bajar()})
         game.onTick(1000, "baja", {banana.bajar()})
@@ -34,7 +34,17 @@ object nivel1 {
         game.onTick(1750, "baja", {te.bajar()})
         game.onTick(2000, "baja", {ensalada.bajar()})
         game.onTick(2250, "baja", {guiso.bajar()})
-
+*/
+// Modifique la velocidad/constancia en la que caen los alimentos para que sea una caida mas normal
+        game.onTick(450, "baja", {mate.bajar()})
+        game.onTick(700, "baja", {choripan.bajar()})
+        game.onTick(1200, "baja", {banana.bajar()})
+        game.onTick(950, "baja", {plutonio.bajar()})
+        game.onTick(1450, "baja", {cerveza.bajar()})
+        game.onTick(1700, "baja", {rosquilla.bajar()})
+        game.onTick(1950, "baja", {te.bajar()})
+        game.onTick(2200, "baja", {ensalada.bajar()})
+        game.onTick(2450, "baja", {guiso.bajar()})
 
         keyboard.a().onPressDo({homero.moverseIzquierda()})
         keyboard.d().onPressDo({homero.moverseDerecha()})
