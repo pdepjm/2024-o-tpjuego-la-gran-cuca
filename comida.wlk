@@ -50,11 +50,11 @@ class Comida{
 
 }
 
-
+//7
 const rosquilla = new Comida(nombre="rosquilla", puntos=5, velocidad=1, accion={homero.poneteGrasoso()})
 const banana = new Comida(nombre="banana", puntos=-3, velocidad=-1, accion={homero.convertiteEnMono()})
 const plutonio = new Comida(nombre="plutonio", puntos=15, velocidad=1, accion={homero.poneteRadiactivo()})
-const choripan = new Comida(nombre="choripan", puntos=7, velocidad=-1, accion={homero.cometeUnChoripan()})
+const choripan = new Comida(nombre="choripan", puntos=100, velocidad=-1, accion={homero.cometeUnChoripan()})
 const mate = new Comida(nombre="mate", puntos=20, velocidad=2, accion={homero.tomateUnMate()})
 const cerveza = new Comida(nombre="cerveza", puntos=15, velocidad=-2, accion={homero.tomateUnaCerveza()})
 const te = new Comida(nombre="te", puntos=-50, velocidad=-1, accion={homero.tomateUnTe()})
@@ -63,4 +63,5 @@ const guiso = new Comida(nombre="guiso", puntos=15, velocidad=-2, accion={homero
 
 
 
-const comidas = [rosquilla, banana, plutonio, choripan, mate, cerveza, te, ensalada, guiso]
+const comidasNivel1 = [rosquilla, banana, plutonio, choripan, cerveza]
+const comidasNivel2 = comidasNivel1 + [mate,ensalada,guiso,te]

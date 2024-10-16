@@ -7,7 +7,17 @@ object homero{
   const position = new MutablePosition(x=8, y=0)
   var estado = "rosquilla"
 
+  method estado() = estado
+
   method position() = position
+
+  method setPuntos(nuevosPuntos){
+    puntos = nuevosPuntos
+  }
+
+  method setVelocidad(x){
+    velocidad = x
+  }
 
   method moverseIzquierda(){
     if(position.x() >= 0 && position.x() - velocidad >= 0)

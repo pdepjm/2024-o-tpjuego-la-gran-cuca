@@ -5,6 +5,16 @@ import niveles.*
 import tableros.*
 
 program homeroGame{
-	nivel1.inciarFondo()
-	keyboard.space().onPressDo{nivel1.iniciarNivel()} 
+
+	if(nivel1.estado() == "inicio"){
+		nivel1.iniciarFondo()
+		keyboard.enter().onPressDo({nivel1.iniciarNivel()})
+	}
+	if(nivel2.estado() == "inicio"){
+		console.println("hasta aca llegue")
+		nivel2.inicializarValores()
+		nivel2.iniciarFondo()
+		nivel2.iniciarNivel()
+		keyboard.enter().onPressDo({nivel2.iniciarNivel()})
+	}
 }

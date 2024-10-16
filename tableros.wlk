@@ -27,6 +27,10 @@ object tiempo {
 
     method timer() = timer
 
+    method setTimer(nuevoTiempo){
+        timer = nuevoTiempo
+    }
+
     method restarSegundo(){
         timer -= 1
     }
@@ -46,4 +50,20 @@ object mensajeDerrota{
     method position() = position
     
     method text() = "Perdiste!"
+}
+
+object mensajeParaNivel2{
+    const position = new MutablePosition(x=9, y=6)
+    
+    method position() = position
+    
+    method text() = "Presione espacio para comenzar el nivel 2"
+}
+
+object bienvenidaNivel2 {
+    const position = new MutablePosition(x=9, y=8)
+    
+    method position() = position
+    
+    method text() = "Bienvenido al nivel 2, homero en el obleisco presione espacio para comenzar!"
 }
