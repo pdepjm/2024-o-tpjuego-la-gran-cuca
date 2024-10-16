@@ -62,4 +62,5 @@ const ensalada = new Comida(nombre="ensalada", puntos=-15, velocidad=1, accion={
 const guiso = new Comida(nombre="guiso", puntos=15, velocidad=-2, accion={homero.poneteObeso()})
 
 
+
 const comidas = [rosquilla, banana, plutonio, choripan, mate, cerveza, te, ensalada, guiso]
