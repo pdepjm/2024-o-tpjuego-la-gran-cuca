@@ -14,7 +14,7 @@ object mensajes {
     
     method position() = position
     
-    method text() = "Bienvenido a Homero en Springfield, presione espacio para comenzar!"
+    method text() = "Bienvenido a Homero en Springfield, presione Enter para comenzar!"
 }
 
 object tiempo {
@@ -57,7 +57,7 @@ object mensajeParaNivel2{
     
     method position() = position
     
-    method text() = "Presione espacio para comenzar el nivel 2"
+    method text() = "Presione Enter para comenzar el nivel 2"
 }
 
 object bienvenidaNivel2 {
@@ -65,5 +65,5 @@ object bienvenidaNivel2 {
     
     method position() = position
     
-    method text() = "Bienvenido al nivel 2, homero en el obleisco presione espacio para comenzar!"
+    method text() = "Bienvenido al nivel 2, homero en el obelisco presione Enter para comenzar!"
 }

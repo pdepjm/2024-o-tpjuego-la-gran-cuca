@@ -101,6 +101,7 @@ object nivel2{
         }else if(homero.position().x()<8){
             homero.position().goRight(8-homero.position().x())
         }
+        homero.poneteGrasoso()
         comidasNivel1.forEach({comida => comida.position().goUp(18)})
     }
 
