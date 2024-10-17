@@ -107,6 +107,9 @@ object nivel2{
 
     method iniciarFondo(){
         game.title("Homero en El Obelisco")
+        game.height(12)
+        game.width(18)
+        game.cellSize(100)
 
         game.removeVisual(mensajeParaNivel2)
         game.removeVisual(mensajeVictoria)
