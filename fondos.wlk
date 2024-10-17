@@ -9,4 +9,4 @@ class Fondo {
 
 }
 
-const obelisco = new Fondo(nombreFondo="obelisco")
+const obelisco = new Fondo(nombreFondo="obelisco2")
