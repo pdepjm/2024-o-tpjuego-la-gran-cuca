@@ -50,7 +50,7 @@ class Comida{
 
 }
 
-//7
+// 7
 const rosquilla = new Comida(nombre="rosquilla", puntos=5, velocidad=1, accion={homero.poneteGrasoso()})
 const banana = new Comida(nombre="banana", puntos=-3, velocidad=-1, accion={homero.convertiteEnMono()})
 const plutonio = new Comida(nombre="plutonio", puntos=15, velocidad=1, accion={homero.poneteRadiactivo()})

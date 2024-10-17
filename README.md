@@ -51,4 +51,3 @@ Consejos para Ganar:
 - `A` para moverse a la izquierda.
 - `D` para moverse a la derecha.
 - `Space` para agarrar objeto.
-

@@ -8,12 +8,12 @@ program homeroGame{
 
 	if(nivel1.estado() == "inicio"){
 		nivel1.iniciarFondo()
-		keyboard.enter().onPressDo({nivel1.iniciarNivel()})
+		keyboard.num1().onPressDo({nivel1.iniciarNivel()})
 	}
+
 	if(nivel2.estado() == "inicio"){
-		nivel2.inicializarValores()
 		nivel2.iniciarFondo()
-		nivel2.iniciarNivel()
-		keyboard.enter().onPressDo({nivel2.iniciarNivel()})
+		keyboard.num2().onPressDo({nivel2.iniciarNivel()})
 	}
+
 }

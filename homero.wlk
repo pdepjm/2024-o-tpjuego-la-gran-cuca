@@ -7,6 +7,10 @@ object homero{
   const position = new MutablePosition(x=8, y=0)
   var estado = "rosquilla"
 
+  method setEstado(nuevoEstado){
+    estado = nuevoEstado
+  }
+
   method estado() = estado
 
   method position() = position

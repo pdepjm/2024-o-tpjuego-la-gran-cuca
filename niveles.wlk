@@ -15,6 +15,19 @@ object nivel1 {
       estado = x
     }
 
+    method inicializarValores(){
+        homero.setPuntos(0)
+        homero.setVelocidad(2)
+        homero.setEstado("rosquilla")
+        tiempo.setTimer(5*60)
+        if(homero.position().x()>8){
+            homero.position().goLeft(homero.position().x()-8)
+        }else if(homero.position().x()<8){
+            homero.position().goRight(8-homero.position().x())
+        }
+    }
+
+
     method iniciarFondo(){
         game.title("Homero en Springfield")
         game.height(12)
@@ -26,15 +39,14 @@ object nivel1 {
         game.addVisual(mensajes)
         game.addVisual(homero)
         game.addVisual(tiempo)
+        self.inicializarValores()
 
         game.start()
 
-    }
+    } 
 
     method iniciarNivel(){
         self.setEstado("jugando")
-        game.onTick(1000, "restarSegundo", {tiempo.restarSegundo()})
-        game.onTick(1000, "finalizarNivel", {if(tiempo.timer() <= 0 || homero.puntos() >= 100) self.finalizarNivel()})
         game.removeVisual(mensajes)
         comidasNivel1.forEach({comida => game.addVisual(comida)})
 
@@ -56,14 +68,14 @@ object nivel1 {
                 game.removeVisual(colliders.head())
             }
         }
-
+        game.onTick(1000, "restarSegundo", {tiempo.restarSegundo()})
+        game.onTick(1000, "finalizarNivel", {if((tiempo.timer() <= 0 || homero.puntos() >= 100) && self.estado() != "finalizado") self.finalizarNivel()})
     }
-
     method finalizarNivel(){
-        self.limpiarJuego()
+        game.removeTickEvent("finalizarNivel")
         game.removeTickEvent("baja")
         game.removeTickEvent("restarSegundo")
-        game.removeTickEvent("finalizarNivel")
+        self.limpiarJuego()
         if(homero.puntos() < 100){
             game.addVisual(mensajeDerrota)
             self.setEstado("finalizado")
@@ -72,6 +84,9 @@ object nivel1 {
             game.addVisual(mensajeParaNivel2)
             self.setEstado("finalizado")
             nivel2.setEstado("inicio")
+            nivel2.inicializarValores()
+            nivel2.iniciarFondo()
+            keyboard.num2().onPressDo({nivel2.iniciarNivel()})
         }
     }
 
@@ -95,40 +110,34 @@ object nivel2{
     method inicializarValores(){
         homero.setPuntos(0)
         homero.setVelocidad(2)
+        homero.setEstado("rosquilla")
         tiempo.setTimer(5*60)
         if(homero.position().x()>8){
             homero.position().goLeft(homero.position().x()-8)
         }else if(homero.position().x()<8){
             homero.position().goRight(8-homero.position().x())
         }
-        homero.poneteGrasoso()
         comidasNivel1.forEach({comida => comida.position().goUp(18)})
     }
 
     method iniciarFondo(){
         game.title("Homero en El Obelisco")
-        game.height(12)
-        game.width(18)
-        game.cellSize(100)
 
         game.removeVisual(mensajeParaNivel2)
         game.removeVisual(mensajeVictoria)
-        
+
         game.addVisual(obelisco)
 
         game.addVisual(puntosHomero)
         game.addVisual(mensajeParaNivel2)
         game.addVisual(homero)
         game.addVisual(tiempo)
-
-        game.start()
-
     }
 
     method iniciarNivel(){
         self.setEstado("jugando")
         game.onTick(1000, "restarSegundo", {tiempo.restarSegundo()})
-        game.onTick(1000, "finalizarNivel", {if(tiempo.timer() <= 0 || homero.puntos() >= 100) self.finalizarNivel()})
+        game.onTick(1000, "finalizarNivel", {if((tiempo.timer() <= 0 || homero.puntos() >= 100) && self.estado()!="finalizado") self.finalizarNivel()})
         game.removeVisual(mensajeParaNivel2)
         comidasNivel2.forEach({comida => game.addVisual(comida)})
 
