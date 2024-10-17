@@ -13,6 +13,11 @@ UTN - Facultad Regional Buenos Aires - Materia Paradigmas de Programación
 ## Capturas 
 
 ![homeroGame](image.png)
+![HomeroGameNivel1Inicio](https://github.com/user-attachments/assets/47f2fff7-c7e0-45f6-bc09-c8409c0b81b2)
+![HomeroGameNivel1Jugando](https://github.com/user-attachments/assets/53372ced-c392-4790-a0ed-aa08f2deba2e)
+![HomeroGameNivel2Inicio](https://github.com/user-attachments/assets/ec75c832-35b7-45a5-9072-9bbcda13ef26)
+![HomeroGameNivel2Jugando](https://github.com/user-attachments/assets/3f143865-fa52-435a-b6e9-78a8fea186db)
+
 
 ## Reglas de Juego / Instrucciones
 
