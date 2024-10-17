@@ -11,20 +11,21 @@ UTN - Facultad Regional Buenos Aires - Materia Paradigmas de Programación
 - Giangrandi, Agostino.
  
 ## Capturas 
-
+### Nivel1:
 ![HomeroGameNivel1Jugando](https://github.com/user-attachments/assets/53372ced-c392-4790-a0ed-aa08f2deba2e)
+### Nivel2:
 ![HomeroGameNivel2Jugando](https://github.com/user-attachments/assets/3f143865-fa52-435a-b6e9-78a8fea186db)
 
 ## Reglas de Juego / Instrucciones
 
-# Descripción del Juego:
+### Descripción del Juego:
 Homero, el "levantapalas 3000", decidió ceder su puesto en la central nuclear a pasantes de la UTN. Ahora trabaja desde casa, ¡pero hay un problema! Nunca usó una computadora y se quedó dormido intentando encontrar la "tecla cualquiera". En su sueño, Homero debe atrapar comida que cae del cielo, pero cuidado: no toda la comida es buena, y las cosas se complican con cada nivel. ¡Ayuda a Homero a comer bien y ganar!
 
-# Objetivo del Juego:
+### Objetivo del Juego:
 Atrapa comida para sumar puntos y alcanza el puntaje necesario antes de que el tiempo se agote.
 Si consigues el puntaje requerido, pasas al siguiente nivel. Si no lo logras, "Over Game".
 
-# Cómo Jugar:
+### Cómo Jugar:
     1. Movimiento:
         Homero solo se puede mover de izquierda a derecha.
         Desplázalo para atrapar la comida que cae del cielo con Space.
@@ -32,7 +33,7 @@ Si consigues el puntaje requerido, pasas al siguiente nivel. Si no lo logras, "O
         Buffea (suma puntos): Ejemplos como choripanes, donas, plutonio, cerveza, mate.
         Nerfea (resta puntos): Ejemplos como banana, ensalada, te, polenta.
 
-# Mecánica del Juego:
+### Mecánica del Juego:
     1. Puntos y Niveles:
         Cada comida atrapada puede sumar o restar puntos.
         Debes alcanzar el puntaje objetivo antes de que el tiempo termine para avanzar al siguiente nivel.
@@ -42,7 +43,7 @@ Si consigues el puntaje requerido, pasas al siguiente nivel. Si no lo logras, "O
         Mayor velocidad de aparición de la comida.
         Mayor velocidad de caída de los objetos.
 
-# Consejos para Ganar:
+### Consejos para Ganar:
     Evita las comidas nerfeadoras y enfócate en atrapar los buffeos.
     Administra el tiempo y prioriza las comidas con más puntos.
     Ten cuidado: ¡A mayor nivel, más rápido todo se pone!
