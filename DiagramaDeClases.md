@@ -17,3 +17,28 @@ compartan el mismo método de interacción, pero con efectos distintos.
 
 ![image](https://github.com/user-attachments/assets/3fa26ba5-d166-4a50-9f13-15494f9e98f0)
 
+
+
+Del diagrama de la clase pasada:
+
+object laPorota {
+    var stock
+    var precio
+
+    method vender(cant,comp){
+        ....... ?????
+        comp.pagar(????)
+    }
+
+    ??????
+}
+
+class Comprador {
+    var medio = new Debito()
+
+    method pagar(monto){
+        medio.pagar(asdfasdf)
+    }
+
+    ??????
+}

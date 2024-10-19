@@ -1,4 +1,5 @@
 import homero.*
+import niveles.*
 object puntosHomero {
   const hom = homero
   const position = new MutablePosition(x=9, y=10)
@@ -33,6 +34,7 @@ object tiempo {
 
     method restarSegundo(){
         timer -= 1
+        juego.verificarFinDeNivel()
     }
 }
 

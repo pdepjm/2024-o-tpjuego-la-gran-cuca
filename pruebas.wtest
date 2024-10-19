@@ -3,10 +3,12 @@ import wollok.game.*
 import comida.*
 
 describe "homero" {
+  // TODO: Hay que testear funcionalidad interesante, lógica del juego.
   test "Homero inicia con 0 puntos" {
     assert.that(homero.puntos()==0)
   }
 
+  // TODO: Si quieren chequear igualdad, deben usar .equals
   test "Homero inicia con velocidad 2" {
     assert.that(homero.velocidad()==2)
   }
@@ -57,180 +59,13 @@ describe "homero" {
     homero.alterarVelocidad(-5)
     assert.that(homero.velocidad()==2)
   }
+  // TODO: No se testean setters!!!
 
-  test "Homero cambia su estado a rosquilla" {
-    homero.cambiarEstado("rosquilla")
-    assert.that(homero.estado()=="rosquilla")
-  }
 
-  test "Homero cambia su estado a banana" {
-    homero.cambiarEstado("banana")
-    assert.that(homero.estado()=="banana")
-  }
-
-  test "Homero cambia su estado a plutonio" {
-    homero.cambiarEstado("plutonio")
-    assert.that(homero.estado()=="plutonio")
-  }
-
-  test "Homero cambia su estado a choripan" {
-    homero.cambiarEstado("choripan")
-    assert.that(homero.estado()=="choripan")
-  }
-
-  test "Homero cambia su estado a mate" {
-    homero.cambiarEstado("mate")
-    assert.that(homero.estado()=="mate")
-  }
-
-  test "Homero cambia su estado a cerveza" {
-    homero.cambiarEstado("cerveza")
-    assert.that(homero.estado()=="cerveza")
-  }
-
-  test "Homero cambia su estado a ensalada" {
-    homero.cambiarEstado("ensalada")
-    assert.that(homero.estado()=="ensalada")
-  }
-
-  test "Homero cambia su estado a guiso" {
-    homero.cambiarEstado("guiso")
-    assert.that(homero.estado()=="guiso")
-  }
-
-  test "Homero se pone grasoso" {
-    homero.poneteGrasoso()
-    assert.that(homero.estado()=="rosquilla")
-  }
-
-  test "Homero se convierte en mono" {
-    homero.convertiteEnMono()
-    assert.that(homero.estado()=="banana")
-  }
-
-  test "Homero se pone radiactivo" {
-    homero.poneteRadiactivo()
-    assert.that(homero.estado()=="plutonio")
-  }
-
-  test "Homero come un choripan" {
-    homero.cometeUnChoripan()
-    assert.that(homero.estado()=="choripan")
-  }
-
-  test "Homero toma un mate" {
-    homero.tomateUnMate()
-    assert.that(homero.estado()=="mate")
-  }
-
-  test "Homero toma una cerveza" {
-    homero.tomateUnaCerveza()
-    assert.that(homero.estado()=="cerveza")
-  }
-
-  test "Homero toma un te" {
-    homero.tomateUnTe()
-    assert.that(homero.estado()=="te")
-  }
-
-  test "Homero come ensalada" {
-    homero.comeEnsalada()
-    assert.that(homero.estado()=="ensalada")
-  }
-
-  test "Homero se pone obeso" {
-    homero.poneteObeso()
-    assert.that(homero.estado()=="guiso")
-  }
-
-  test "Homero tiene la imagen homero-rosquilla.png" {
-    homero.cambiarEstado("rosquilla")
-    assert.that(homero.image()=="homero-rosquilla.png")
-  }
-
-  test "Homero tiene la imagen homero-banana.png" {
-    homero.cambiarEstado("banana")
-    assert.that(homero.image()=="homero-banana.png")
-  }
-
-  test "Homero tiene la imagen homero-plutonio.png" {
-    homero.cambiarEstado("plutonio")
-    assert.that(homero.image()=="homero-plutonio.png")
-  }
-
-  test "Homero tiene la imagen homero-choripan.png" {
-    homero.cambiarEstado("choripan")
-    assert.that(homero.image()=="homero-choripan.png")
-  }
-
-  test "Homero tiene la imagen homero-mate.png" {
-    homero.cambiarEstado("mate")
-    assert.that(homero.image()=="homero-mate.png")
-  }
-
-  test "Homero tiene la imagen homero-cerveza.png" {
-    homero.cambiarEstado("cerveza")
-    assert.that(homero.image()=="homero-cerveza.png")
-  }
-
-  test "Homero tiene la imagen homero-te.png" {
-    homero.cambiarEstado("te")
-    assert.that(homero.image()=="homero-te.png")
-  }
-
-  test "Homero tiene la imagen homero-ensalada.png" {
-    homero.cambiarEstado("ensalada")
-    assert.that(homero.image()=="homero-ensalada.png")
-  }
-
-  test "Homero tiene la imagen homero-guiso.png" {
-    homero.cambiarEstado("guiso")
-    assert.that(homero.image()=="homero-guiso.png")
-  }
-
-  test "Homero interactua con una rosquilla" {
-    rosquilla.interactua(homero)
-    assert.that(homero.estado()=="rosquilla")
-  }
-
-  test "Homero interactua con una banana" {
-    banana.interactua(homero)
-    assert.that(homero.estado()=="banana")
-  }
-
-  test "Homero interactua con plutonio" {
-    plutonio.interactua(homero)
-    assert.that(homero.estado()=="plutonio")
-  }
-
-  test "Homero interactua con un choripan" {
-    choripan.interactua(homero)
-    assert.that(homero.estado()=="choripan")
-  }
-
-  test "Homero interactua con un mate" {
-    mate.interactua(homero)
-    assert.that(homero.estado()=="mate")
-  }
-
-  test "Homero interactua con una cerveza" {
-    cerveza.interactua(homero)
-    assert.that(homero.estado()=="cerveza")
-  }
-
-  test "Homero interactua con un te" {
-    te.interactua(homero)
-    assert.that(homero.estado()=="te")
-  }
-
-  test "Homero interactua con una ensalada" {
-    ensalada.interactua(homero)
-    assert.that(homero.estado()=="ensalada")
-  }
-
-  test "Homero interactua con un guiso" {
-    guiso.interactua(homero)
-    assert.that(homero.estado()=="guiso")
-  }
-
+  // TODO: tests de los distintos comportamientos de las comidas
+  //  (o sea que la velocidad y los puntos se aumenten correctamente)
+  // TODO: test que se mueve correctamente de acuerdo a la velocidad (la cantidad de casillas)
+  // TODO: tests de distintos casos de movimientos (por ejemplo que no salga de la pantalla)
+  // Pensar los casos de tests que yo quiero probar. (escribir con texto)
+  // Elijan algún conjunto lindo y cerrado para testear.
 }

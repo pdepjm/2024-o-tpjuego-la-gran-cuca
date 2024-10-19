@@ -1,22 +1,28 @@
 import wollok.game.*
 import comida.*
+import niveles.*
 
 object homero{
   var puntos = 0
   var velocidad = 2
   const position = new MutablePosition(x=8, y=0)
-  var estado = "rosquilla"
+  var ultimaComida = rosquilla
 
-  method setEstado(nuevoEstado){
-    estado = nuevoEstado
+  method ultimaComida(comida){
+    ultimaComida = comida
   }
 
-  method estado() = estado
+  method come(comida) {
+    ultimaComida = comida
+    self.alterarPuntos(comida.puntos())
+    self.alterarVelocidad(comida.velocidad())
+  }
 
   method position() = position
 
   method setPuntos(nuevosPuntos){
     puntos = nuevosPuntos
+    juego.verificarFinDeNivel()
   }
 
   method setVelocidad(x){
@@ -24,13 +30,13 @@ object homero{
   }
 
   method moverseIzquierda(){
+
     if(position.x() >= 0 && position.x() - velocidad >= 0)
       position.goLeft(velocidad)
   }  
 
   method moverseDerecha(){
-    if(position.x() <= 16 && position.x() + velocidad <= 16)
-      position.goRight(velocidad)
+    ultimaComida.moverseAdelante(position)
   }
 
 
@@ -47,49 +53,8 @@ object homero{
   method puntos() = puntos
 
   method velocidad() = velocidad
-
-  method cambiarEstado(nuevoEstado) {
-    estado = nuevoEstado
-  }
-
-  method poneteGrasoso() {
-    self.cambiarEstado("rosquilla")
-  }
-
-  method convertiteEnMono() {
-    self.cambiarEstado("banana")
-  }
-
-  method poneteRadiactivo() {
-    self.cambiarEstado("plutonio")
-  }
-
-  method cometeUnChoripan() {
-    self.cambiarEstado("choripan")
-  }
-
-  method tomateUnMate() {
-    self.cambiarEstado("mate")
-  }
-
-  method tomateUnaCerveza() {
-    self.cambiarEstado("cerveza")
-  }
-
-  method tomateUnTe() {
-    self.cambiarEstado("te")
-  }
-
-  method comeEnsalada() {
-    self.cambiarEstado("ensalada")
-  }
-
-  method poneteObeso() {
-    self.cambiarEstado("guiso")
-  }
   
-  method image() = "homero-"+ estado + ".png"
-
+  method image() = "homero-"+ ultimaComida.image()
 }
 
 // Usar bastante polimorfismo. Podemos usarlo con los objetos que caen (las caracteristicas de los objetos, comportamientios, efectos sobre Homero, puntos, 

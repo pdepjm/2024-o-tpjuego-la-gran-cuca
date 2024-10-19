@@ -5,6 +5,18 @@ import wollok.game.*
 import fondos.*
 
 //Estados : inicio, jugando, finalizado
+// TODO: pensar la estructura general de cada nivel, y lo que difiere.
+// No repetir lo general. -> Pista, seguro usarán clases. 
+// Pista: quizás la herencia pueda ayudar también.
+// No repetir nada de lógica.
+
+object juego {
+    var nivelActual = nivel1
+
+    method verificarFinDeNivel(){
+        nivelActual.verificarFinDeNivel()
+    }
+}
 
 object nivel1 { 
     var estado = "inicio"
@@ -18,7 +30,7 @@ object nivel1 {
     method inicializarValores(){
         homero.setPuntos(0)
         homero.setVelocidad(2)
-        homero.setEstado("rosquilla")
+        homero.ultimaComida(rosquilla)
         tiempo.setTimer(5*60)
         if(homero.position().x()>8){
             homero.position().goLeft(homero.position().x()-8)
@@ -59,18 +71,17 @@ object nivel1 {
         keyboard.a().onPressDo({homero.moverseIzquierda()})
         keyboard.d().onPressDo({homero.moverseDerecha()})
 
-        keyboard.space().onPressDo{
-            const colliders = game.colliders(homero)
-            if(colliders.head()!=null){
-                colliders.head().interactua(homero)
-                homero.alterarPuntos(colliders.head().puntos())
-                homero.alterarVelocidad(colliders.head().velocidad())
-                game.removeVisual(colliders.head())
-            }
-        }
+        game.onCollideDo(homero, {cosa => cosa.interactua(homero)})
+        
         game.onTick(1000, "restarSegundo", {tiempo.restarSegundo()})
-        game.onTick(1000, "finalizarNivel", {if((tiempo.timer() <= 0 || homero.puntos() >= 100) && self.estado() != "finalizado") self.finalizarNivel()})
     }
+
+    method verificarFinDeNivel(){
+        if (tiempo.timer() <= 0 || homero.puntos() >= 100)  {
+            self.finalizarNivel()
+        }
+    }
+
     method finalizarNivel(){
         game.removeTickEvent("finalizarNivel")
         game.removeTickEvent("baja")
@@ -110,7 +121,6 @@ object nivel2{
     method inicializarValores(){
         homero.setPuntos(0)
         homero.setVelocidad(2)
-        homero.setEstado("rosquilla")
         tiempo.setTimer(5*60)
         if(homero.position().x()>8){
             homero.position().goLeft(homero.position().x()-8)
