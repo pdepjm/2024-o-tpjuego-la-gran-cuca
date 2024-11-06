@@ -73,8 +73,7 @@ object aLaIzquierda{
     }
 }
 
-//Rosquilla puntos = 5
-const rosquilla = new Comida(nombre="rosquilla", puntos=100, velocidad=50)
+const rosquilla = new Comida(nombre="rosquilla", puntos=5, velocidad=50)
 const banana = new Comida(nombre="banana", puntos=-3, velocidad=-50)
 const plutonio = new Comida(nombre="plutonio", puntos=15, velocidad=20)
 const cerveza = new Comida(nombre="cerveza", puntos=15, velocidad=-30,tipoAvance=aLaIzquierda)
