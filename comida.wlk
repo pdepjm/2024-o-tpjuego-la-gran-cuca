@@ -39,6 +39,10 @@ class Comida{
         tipoAvance.moverseAdelante(posicion)
     }
 
+    method moverseAtras(posicion){
+        tipoAvance.moverseAtras(posicion)
+    }
+
 }
 
 
@@ -47,13 +51,31 @@ object aLaDerecha{
         if(posicion.x() <= game.width() - 2 && posicion.x() + 1 <= game.width())
              posicion.goRight(1)
     }
+
+    method moverseAtras(posicion){
+        if(posicion.x() >= 2 && posicion.x() - 1 >= 0)
+            posicion.goLeft(1)
+    }
+
 }
 
+object aLaIzquierda{
+    method moverseAtras(posicion){
+        if(posicion.x() <= game.width() - 2 && posicion.x() + 1 <= game.width())
+            posicion.goRight(1)
+    }
 
-const rosquilla = new Comida(nombre="rosquilla", puntos=5, velocidad=1)
+    method moverseAdelante(posicion){
+        if(posicion.x() >= 2 && posicion.x() - 1 >= 0)
+            posicion.goLeft(1)
+    }
+}
+
+//Rosquilla puntos = 5
+const rosquilla = new Comida(nombre="rosquilla", puntos=100, velocidad=1)
 const banana = new Comida(nombre="banana", puntos=-3, velocidad=-1)
 const plutonio = new Comida(nombre="plutonio", puntos=15, velocidad=1)
-const cerveza = new Comida(nombre="cerveza", puntos=15, velocidad=-2)
+const cerveza = new Comida(nombre="cerveza", puntos=15, velocidad=-2,tipoAvance=aLaIzquierda)
 const choripan = new Comida(nombre="choripan", puntos=7, velocidad=-1)
 const mate = new Comida(nombre="mate", puntos=20, velocidad=2)
 const te = new Comida(nombre="te", puntos=-50, velocidad=-1)

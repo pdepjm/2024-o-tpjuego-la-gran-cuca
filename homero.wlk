@@ -4,9 +4,11 @@ import niveles.*
 
 object homero{
   var puntos = 0
-  var velocidad = 2
+  var velocidad = 1
   const position = new MutablePosition(x=8, y=0)
   var ultimaComida = rosquilla
+
+  method velocidad() = velocidad
 
   method ultimaComida(comida){
     ultimaComida = comida
@@ -30,9 +32,7 @@ object homero{
   }
 
   method moverseIzquierda(){
-
-    if(position.x() >= 0 && position.x() - velocidad >= 0)
-      position.goLeft(velocidad)
+    ultimaComida.moverseAtras(position)
   }  
 
   method moverseDerecha(){
@@ -47,12 +47,9 @@ object homero{
 
   method alterarVelocidad(nuevaVelocidad){
     velocidad += nuevaVelocidad
-    velocidad = velocidad.max(2)
   }
 
   method puntos() = puntos
-
-  method velocidad() = velocidad
   
   method image() = "homero-"+ ultimaComida.image()
 }
