@@ -5,7 +5,7 @@ import niveles.*
 object homero{
   var puntos = 0
   var velocidad = 1
-  var position = new MutablePosition(x=game.width()/2, y=0)
+  var position = new MutablePosition(x=(game.width()/2).roundUp(), y=0)
   var ultimaComida = rosquilla
 
   method velocidad() = velocidad

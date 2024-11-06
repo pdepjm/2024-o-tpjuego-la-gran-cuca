@@ -12,13 +12,13 @@ class Comida{
     var property velocidad
     const tipoAvance = aLaDerecha
 
-    var position = new MutablePosition(x=(0..8).anyOne()*2, y=16)
+    var position = new MutablePosition(x=(0..game.width()).anyOne()*2, y=game.height())
     
     method image() = nombre + ".png"
     method position() = position
 
     method positionX(nueva_pos_x){
-        position = new MutablePosition(x=nueva_pos_x, y=16)
+        position = new MutablePosition(x=nueva_pos_x, y=game.height())
     }
 
     method bajar(){
@@ -63,12 +63,12 @@ object aLaDerecha{
 
 object aLaIzquierda{
     method moverseAtras(posicion){
-        if(posicion.x() <= game.width() - 3 && posicion.x() + 1 <= game.width() - 2)
+        if(posicion.x() <= game.width() - 3)
             posicion.goRight(1)
     }
 
     method moverseAdelante(posicion){
-        if(posicion.x() >= 1 && posicion.x() - 1 >= 0)
+        if(posicion.x() >= 1)
             posicion.goLeft(1)
     }
 }

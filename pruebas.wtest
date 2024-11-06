@@ -11,7 +11,7 @@ describe "homero" {
   // TODO: Si quieren chequear igualdad, deben usar .equals
 
   test "Homero inicia en la posicion x=mitad de la pantalla, y=0" {
-    assert.equals(homero.position().x(), game.width()/2)
+    assert.equals(homero.position().x(), (game.width()/2).roundUp())
     assert.equals(homero.position().y(), 0)
   }
 
@@ -32,16 +32,30 @@ describe "homero" {
     assert.equals(homero.puntos(),0)
   }
 
-  test "Cuando homero esta borracho, si se mueve para la izquierda va para la derecha"{
-    homero.come(cerveza)
-    homero.moverseIzquierda()
-    assert.equals(homero.position().x(),game.width()/2+1)
-  }
-
   test "Cuando homero esta borracho, si se mueve para la derecha va para la izquierda"{
+    const posicion_anterior = homero.position().x()
     homero.come(cerveza)
     homero.moverseDerecha()
-    assert.equals(homero.position().x(),game.width()/2-1)
+    assert.equals(homero.position().x(),posicion_anterior-1)
+  }
+
+  test "Cuando homero esta borracho, si se mueve para la izquierda va para la derecha"{
+    homero.positionX(1)
+    const posicion_anterior = homero.position().x()
+    homero.come(cerveza)
+    homero.moverseIzquierda()
+    assert.equals(homero.position().x(),posicion_anterior+1)
+  }
+
+
+  test "los puntos de homero aumentan correctamente"{
+    homero.come(cerveza)
+    assert.that(homero.puntos()>0)
+  }
+
+  test "la velocidad de homero aumenta correctamente"{
+    homero.come(rosquilla)
+    assert.that(homero.velocidad()>1)
   }
 
 
