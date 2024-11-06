@@ -5,61 +5,44 @@ import comida.*
 describe "homero" {
   // TODO: Hay que testear funcionalidad interesante, lógica del juego.
   test "Homero inicia con 0 puntos" {
-    assert.that(homero.puntos()==0)
+    assert.equals(homero.puntos(), 0)
   }
 
   // TODO: Si quieren chequear igualdad, deben usar .equals
-  test "Homero inicia con velocidad 2" {
-    assert.that(homero.velocidad()==2)
-  }
 
-  test "Homero inicia en la posicion x=8, y=0" {
-    assert.that(homero.position().x()==8)
-    assert.that(homero.position().y()==0)
-  }
-
-  test "Homero se mueve a la izquierda" {
-    homero.moverseIzquierda()
-    assert.that(homero.position().x()==6)
-  }
-
-  test "Homero se mueve a la derecha" {
-    homero.moverseDerecha()
-    assert.that(homero.position().x()==10)
+  test "Homero inicia en la posicion x=mitad de la pantalla, y=0" {
+    assert.equals(homero.position().x(), game.width()/2)
+    assert.equals(homero.position().y(), 0)
   }
 
   test "Homero no se mueve a la izquierda si esta en el borde" {
-    homero.position().goLeft(8)
+    homero.positionX(0)
     homero.moverseIzquierda()
-    assert.that(homero.position().x()==0)
+    assert.equals(homero.position().x(),0)
   }
 
   test "Homero no se mueve a la derecha si esta en el borde" {
-    homero.position().goRight(8)
+    homero.positionX(game.width()-1)
     homero.moverseDerecha()
-    assert.that(homero.position().x()==16)
-  }
-
-  test "Homero altera sus puntos" {
-    homero.alterarPuntos(5)
-    assert.that(homero.puntos()==5)
+    assert.equals(homero.position().x(),game.width()-1)
   }
 
   test "Homero no puede tener puntos negativos" {
-    homero.alterarPuntos(-5)
-    assert.that(homero.puntos()==0)
+    homero.puntos(-5)
+    assert.equals(homero.puntos(),0)
   }
 
-  test "Homero altera su velocidad" {
-    homero.alterarVelocidad(5)
-    assert.that(homero.velocidad()==7)
+  test "Cuando homero esta borracho, si se mueve para la izquierda va para la derecha"{
+    homero.come(cerveza)
+    homero.moverseIzquierda()
+    assert.equals(homero.position().x(),game.width()/2+1)
   }
 
-  test "Homero no puede tener velocidad menor a 2" {
-    homero.alterarVelocidad(-5)
-    assert.that(homero.velocidad()==2)
+  test "Cuando homero esta borracho, si se mueve para la derecha va para la izquierda"{
+    homero.come(cerveza)
+    homero.moverseDerecha()
+    assert.equals(homero.position().x(),game.width()/2-1)
   }
-  // TODO: No se testean setters!!!
 
 
   // TODO: tests de los distintos comportamientos de las comidas

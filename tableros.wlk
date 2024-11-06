@@ -28,7 +28,7 @@ object tiempo {
 
     method timer() = timer
 
-    method setTimer(nuevoTiempo){
+    method timer(nuevoTiempo){
         timer = nuevoTiempo
     }
 

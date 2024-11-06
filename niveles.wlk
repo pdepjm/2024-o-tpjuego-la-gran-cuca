@@ -11,10 +11,13 @@ import fondos.*
 // No repetir nada de lógica.
 
 object juego {
-    const nivelActual = nivel1
+    var nivelActual = nivel1
 
     method verificarFinDeNivel(){
         nivelActual.verificarFinDeNivel()
+        if(nivelActual.estado() == "finalizado"){
+            nivelActual = nivel2
+        }
     }
 }
 
@@ -25,7 +28,7 @@ class Nivel{
 
     method estado() = estado
 
-    method setEstado(x) {
+    method estado(x) {
       estado = x
     }
 
@@ -33,12 +36,8 @@ class Nivel{
         homero.setPuntos(0)
         homero.setVelocidad(1)
         homero.ultimaComida(rosquilla)
-        tiempo.setTimer(5*60)
-        if(homero.position().x()>8){
-            homero.position().goLeft(homero.position().x()-8)
-        }else if(homero.position().x()<8){
-            homero.position().goRight(8-homero.position().x())
-        }
+        tiempo.timer(5*60)
+        homero.positionX(game.width()/2)
     }
 
 
@@ -60,7 +59,7 @@ class Nivel{
 
     
     method iniciarNivel(){
-        self.setEstado("jugando")
+        self.estado("jugando")
         game.removeVisual(mensajes)
         comidasNivel1.forEach({comida => game.addVisual(comida)})
 
@@ -91,12 +90,12 @@ class Nivel{
         self.limpiarJuego()
         if(homero.puntos() < 100){
             game.addVisual(mensajeDerrota)
-            self.setEstado("finalizado")
+            self.estado("finalizado")
         }else{
             game.addVisual(mensajeVictoria)
             game.addVisual(mensajeParaNivel2)
-            self.setEstado("finalizado")
-            nivel2.setEstado("inicio")
+            self.estado("finalizado")
+            nivel2.estado("inicio")
             nivel2.inicializarValores()
             nivel2.iniciarFondo()
             keyboard.num2().onPressDo({nivel2.iniciarNivel()})
@@ -114,12 +113,8 @@ object nivel2 inherits Nivel(estado = "espera"){
     override method inicializarValores(){
         homero.setPuntos(0)
         homero.setVelocidad(1)
-        tiempo.setTimer(5*60)
-        if(homero.position().x()>8){
-            homero.position().goLeft(homero.position().x()-8)
-        }else if(homero.position().x()<8){
-            homero.position().goRight(8-homero.position().x())
-        }
+        tiempo.timer(5*60)
+        homero.positionX(game.width()/2)
         comidasNivel1.forEach({comida => comida.position().goUp(18)})
     }
 
@@ -138,7 +133,7 @@ object nivel2 inherits Nivel(estado = "espera"){
     }
 
     override method iniciarNivel(){
-        self.setEstado("jugando")
+        self.estado("jugando")
         game.onTick(1000, "restarSegundo", {tiempo.restarSegundo()})
         game.onTick(1000, "finalizarNivel", {if((tiempo.timer() <= 0 || homero.puntos() >= 100) && self.estado()!="finalizado") self.finalizarNivel()})
         game.removeVisual(mensajeParaNivel2)
@@ -154,19 +149,22 @@ object nivel2 inherits Nivel(estado = "espera"){
         game.onTick(2200 + homero.velocidad(), "baja", {ensalada.bajar()})
         game.onTick(2450 + homero.velocidad() , "baja", {guiso.bajar()})
 
-
-
-        keyboard.space().onPressDo{
-            const colliders = game.colliders(homero)
-            if(colliders.head() != null){
-                colliders.head().interactua(homero)
-                homero.alterarPuntos(colliders.head().puntos())
-                homero.alterarVelocidad(colliders.head().velocidad())
-                game.removeVisual(colliders.head())
-            }
-        }
-
     }
+
+    override method finalizarNivel(){
+        game.removeTickEvent("finalizarNivel")
+        game.removeTickEvent("baja")
+        game.removeTickEvent("restarSegundo")
+        self.limpiarJuego()
+        if(homero.puntos() < 100){
+            game.addVisual(mensajeDerrota)
+            self.estado("finalizado")
+        }else{
+            game.addVisual(mensajeVictoria)
+            self.estado("finalizado")
+        }
+    }
+
 }
 
 //Estados nivel2 : espera,inicio, jugando, finalizado

@@ -5,7 +5,7 @@ import niveles.*
 object homero{
   var puntos = 0
   var velocidad = 1
-  const position = new MutablePosition(x=8, y=0)
+  var position = new MutablePosition(x=game.width()/2, y=0)
   var ultimaComida = rosquilla
 
   method velocidad() = velocidad
@@ -14,10 +14,14 @@ object homero{
     ultimaComida = comida
   }
 
+  method positionX(nueva_pos_x){
+    position = new MutablePosition(x=nueva_pos_x, y=0)
+  }
+
   method come(comida) {
     ultimaComida = comida
-    self.alterarPuntos(comida.puntos())
-    self.alterarVelocidad(comida.velocidad())
+    self.puntos(comida.puntos())
+    self.velocidad(comida.velocidad())
   }
 
   method position() = position
@@ -40,12 +44,12 @@ object homero{
   }
 
 
-  method alterarPuntos(nuevosPuntos){
+  method puntos(nuevosPuntos){
     puntos += nuevosPuntos
     puntos = puntos.max(0)
   }
 
-  method alterarVelocidad(nuevaVelocidad){
+  method velocidad(nuevaVelocidad){
     velocidad += nuevaVelocidad
   }
 

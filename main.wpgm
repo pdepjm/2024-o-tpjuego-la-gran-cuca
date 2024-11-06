@@ -11,9 +11,5 @@ program homeroGame{
 		keyboard.num1().onPressDo({nivel1.iniciarNivel()})
 	}
 
-	if(nivel2.estado() == "inicio"){
-		nivel2.iniciarFondo()
-		keyboard.num2().onPressDo({nivel2.iniciarNivel()})
-	}
 
 }
