@@ -11,6 +11,4 @@ El método “interactúa” de la clase Comida es un ejemplo de polimorfismo cu
 
 Pueden existir objetos letales, como la silla, si homero interactúa con una silla de plastico, lo más probable es que esta lo traicione y termine con la partida inmediatamente.
 
-![image](https://github.com/user-attachments/assets/6bd0ffe8-0580-419d-8520-d92c076d3879)
-
-agregar nivel 2
+![image](https://github.com/user-attachments/assets/683e082c-a13f-4682-9e7c-4cc8666be9ef)
