@@ -1,16 +1,12 @@
 import wollok.game.*
+import comida.*
+import homero.*
+import niveles.*
+import tableros.*
 
-import pepita.*
+program homeroGame{
 
-program PepitaGame {
-	game.title("Pepita")
-	game.height(10)
-	game.width(10)
-	game.cellSize(100)
+	juego.nivelActual().iniciarFondo()
+	keyboard.num1().onPressDo({juego.nivelActual().iniciarNivel()})
 
-	game.addVisual(pepita)
-
-	keyboard.w().onPressDo({ pepita.fly(1) })
-
-	game.start()
 }

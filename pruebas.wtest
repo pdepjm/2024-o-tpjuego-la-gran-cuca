@@ -1,9 +1,84 @@
-import pepita.*
+import niveles.*
+import homero.*
+import wollok.game.*
+import comida.*
+import tableros.*
 
-describe "group of tests for pepita" {
+describe "homero" {
+  test "Homero inicia con 0 puntos" {
+    assert.equals(homero.puntos(), 0)
+  }
 
-  test "pepita has initial energy" {
-    assert.equals(100, pepita.energy())
+  test "Homero inicia en la posicion x=mitad de la pantalla, y=0" {
+    assert.equals(homero.position().x(), (game.width()/2).roundUp())
+    assert.equals(homero.position().y(), 0)
+  }
+
+  test "Homero no se mueve a la izquierda si esta en el borde" {
+    homero.positionX(0)
+    homero.moverseIzquierda()
+    assert.equals(homero.position().x(),0)
+  }
+
+  test "Homero no se mueve a la derecha si esta en el borde" {
+    homero.positionX(game.width()-1)
+    homero.moverseDerecha()
+    assert.equals(homero.position().x(),game.width()-1)
+  }
+
+  test "Homero no puede tener puntos negativos" {
+    homero.puntos(-5)
+    assert.equals(homero.puntos(),0)
+  }
+
+  test "Cuando homero esta borracho, si se mueve para la derecha va para la izquierda"{
+    const posicion_anterior = homero.position().x()
+    homero.come(cerveza)
+    homero.moverseDerecha()
+    assert.equals(homero.position().x(),posicion_anterior-1)
+  }
+
+  test "Cuando homero esta borracho, si se mueve para la izquierda va para la derecha"{
+    homero.positionX(1)
+    const posicion_anterior = homero.position().x()
+    homero.come(cerveza)
+    homero.moverseIzquierda()
+    assert.equals(homero.position().x(),posicion_anterior+1)
+  }
+
+
+  test "los puntos de homero aumentan correctamente"{
+    homero.come(cerveza)
+    assert.that(homero.puntos()>0)
+  }
+
+  test "cuando homero come banana el coeficiente de velocidad aumenta"{
+    juego.velocidad(1)
+    homero.come(banana)
+    assert.that(juego.velocidad()>1)
+  }
+
+  test "cuando homero come rosquilla el coeficiente de velocidad disminuye"{
+    juego.velocidad(1)
+    homero.come(rosquilla)
+    assert.that(juego.velocidad()<1)
+  }
+
+  test "cuando homero come una silla de plastico pierde"{
+    silla.interactua(homero)
+    assert.equals(tiempo.timer(),0)
+  }
+
+  test "cuando homero come té resta puntos"{
+    homero.puntos(50)
+    homero.come(te)
+    assert.that(homero.puntos()<50)
+  }
+
+  test "cuando homero tiene 100 puntos gana el nivel"{
+    homero.puntos(100)
+    juego.verificarFinDeNivel()
+    assert.equals(nivel1.estado(),"ganado")
   }
 
 }
