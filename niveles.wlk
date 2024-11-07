@@ -47,6 +47,7 @@ class Nivel{
         homero.ultimaComida(rosquilla)
         tiempo.timer(5*60)
         homero.positionX(game.width()/2)
+        comidasNivel1.forEach({comida => comida.positionX((0..game.width()-2).anyOne())})
     }
 
 
@@ -73,11 +74,11 @@ class Nivel{
         comidasNivel1.forEach({comida => game.addVisual(comida)})
 
         game.onTick(1000 * juego.velocidad(), "baja", {rosquilla.bajar()})
-        game.onTick(600 * juego.velocidad() , "baja", {banana.bajar()})
-        game.onTick(200 * juego.velocidad() , "baja", {choripan.bajar()})
-        game.onTick(800 * juego.velocidad() , "baja", {cerveza.bajar()})
-        game.onTick(400 * juego.velocidad() , "baja", {plutonio.bajar()})
-        game.onTick(250 * juego.velocidad() , "baja", {silla.bajar()})
+        game.onTick(800 * juego.velocidad() , "baja", {banana.bajar()})
+        game.onTick(400 * juego.velocidad() , "baja", {choripan.bajar()})
+        game.onTick(900 * juego.velocidad() , "baja", {cerveza.bajar()})
+        game.onTick(500 * juego.velocidad() , "baja", {plutonio.bajar()})
+        game.onTick(200 * juego.velocidad() , "baja", {silla.bajar()})
 
         keyboard.a().onPressDo({homero.moverseIzquierda()})
         keyboard.d().onPressDo({homero.moverseDerecha()})
@@ -119,14 +120,6 @@ class Nivel{
 
 object nivel2 inherits Nivel(estado = "espera"){
 
-    override method inicializarValores(){
-        homero.puntos(0)
-        juego.velocidad(1)
-        tiempo.timer(5*60)
-        homero.positionX(game.width()/2)
-        comidasNivel1.forEach({comida => comida.position().goUp(18)})
-    }
-
     override method iniciarFondo(){
         game.title("Homero en El Obelisco")
 
@@ -146,18 +139,18 @@ object nivel2 inherits Nivel(estado = "espera"){
         game.removeVisual(mensajeParaNivel2)
         comidasNivel2.forEach({comida => game.addVisual(comida)})
         //lvl2
-        game.onTick(250 * juego.velocidad(), "baja", {mate.bajar()})
-        game.onTick(300 * juego.velocidad() , "baja", {te.bajar()})
-        game.onTick(500 * juego.velocidad(), "baja", {ensalada.bajar()})
-        game.onTick(700 * juego.velocidad() , "baja", {guiso.bajar()})
+        game.onTick(1200 * juego.velocidad(), "baja", {mate.bajar()})
+        game.onTick(500 * juego.velocidad() , "baja", {te.bajar()})
+        game.onTick(600 * juego.velocidad(), "baja", {ensalada.bajar()})
+        game.onTick(1500 * juego.velocidad() , "baja", {guiso.bajar()})
         //lvl1
-        game.onTick(1000 * juego.velocidad(), "baja", {rosquilla.bajar()})
-        game.onTick(600 * juego.velocidad() , "baja", {banana.bajar()})
-        game.onTick(200 * juego.velocidad() , "baja", {choripan.bajar()})
+        game.onTick(1200 * juego.velocidad(), "baja", {rosquilla.bajar()})
+        game.onTick(1300 * juego.velocidad() , "baja", {banana.bajar()})
+        game.onTick(1400 * juego.velocidad() , "baja", {choripan.bajar()})
         game.onTick(800 * juego.velocidad() , "baja", {cerveza.bajar()})
-        game.onTick(400 * juego.velocidad() , "baja", {plutonio.bajar()})
-        game.onTick(250 * juego.velocidad() , "baja", {silla.bajar()})
-
+        game.onTick(1000 * juego.velocidad() , "baja", {plutonio.bajar()})
+        game.onTick(200 * juego.velocidad() , "baja", {silla.bajar()})
+    
         game.onTick(1000, "restarSegundo", {tiempo.restarSegundo()})
     }
 
