@@ -6,7 +6,7 @@ object puntosHomero {
 
   method position() = position
 
-  method text () = "Puntos: " + hom.puntos() + " Velocidad: " + hom.velocidad()
+  method text () = "Puntos: " + hom.puntos() + " Velocidad: " + juego.velocidad()
 
 }
 

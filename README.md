@@ -22,23 +22,26 @@ UTN - Facultad Regional Buenos Aires - Materia Paradigmas de Programación
 Homero, el "levantapalas 3000", decidió ceder su puesto en la central nuclear a pasantes de la UTN. Ahora trabaja desde casa, ¡pero hay un problema! Nunca usó una computadora y se quedó dormido intentando encontrar la "tecla cualquiera". En su sueño, Homero debe atrapar comida que cae del cielo, pero cuidado: no toda la comida es buena, y las cosas se complican con cada nivel. ¡Ayuda a Homero a comer bien y ganar!
 
 ### Objetivo del Juego:
-Atrapa comida para sumar puntos y alcanza el puntaje necesario antes de que el tiempo se agote.
+Atrapa comida para sumar puntos y alcanza el puntaje necesario antes de que el tiempo se agote. Cuidado, porque la comida que más suma tambien es la que aumenta la velocidad de caida de los alimentos, lo que conlleva una mayor dificultad.
 Si consigues el puntaje requerido, pasas al siguiente nivel. Si no lo logras, "Over Game".
 
 ### Cómo Jugar:
     1. Movimiento:
         Homero solo se puede mover de izquierda a derecha.
-        Desplázalo para atrapar la comida que cae del cielo con Space.
+        Desplázalo para atrapar la comida que cae del cielo.
     2. Tipos de Comida:
-        Buffea (suma puntos): Ejemplos como choripanes, donas, plutonio, cerveza, mate.
-        Nerfea (resta puntos): Ejemplos como banana, ensalada, te, polenta.
+        Aumenta puntos : Ejemplos como choripanes, donas, plutonio, cerveza, mate, etc.
+        Disminuye puntos: Ejemplos como banana, ensalada, te, polenta, etc.
+        Aumenta velocidad caida comida: Ejemplos como rosquilla, plutonio, choripan, etc.
+        Disminuye velocidad caida comida: Ejemplos como ensalada, banana, etc.
+        Pierde juego: Silla.
 
 ### Mecánica del Juego:
-    1. Puntos y Niveles:
+    1. Puntos, Velocidad y Niveles:
         Cada comida atrapada puede sumar o restar puntos.
+        Además, cada comida atrapada aumenta o disminuye la velocidad de caida de los mismos.
         Debes alcanzar el puntaje objetivo antes de que el tiempo termine para avanzar al siguiente nivel.
     2. Dificultad Progresiva:
-        Más puntos necesarios en cada nivel.
         Más comidas nerfeadoras que restan puntos.
         Mayor velocidad de aparición de la comida.
         Mayor velocidad de caída de los objetos.
@@ -52,4 +55,3 @@ Si consigues el puntaje requerido, pasas al siguiente nivel. Si no lo logras, "O
 
 - `A` para moverse a la izquierda.
 - `D` para moverse a la derecha.
-- `Space` para agarrar objeto.

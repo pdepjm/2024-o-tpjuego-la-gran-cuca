@@ -1,6 +1,8 @@
+import niveles.*
 import homero.*
 import wollok.game.*
 import comida.*
+import tableros.*
 
 describe "homero" {
   // TODO: Hay que testear funcionalidad interesante, lógica del juego.
@@ -53,9 +55,33 @@ describe "homero" {
     assert.that(homero.puntos()>0)
   }
 
-  test "la velocidad de homero aumenta correctamente"{
+  test "cuando homero come banana el coeficiente de velocidad aumenta"{
+    juego.velocidad(1)
+    homero.come(banana)
+    assert.that(juego.velocidad()>1)
+  }
+
+  test "cuando homero come rosquilla el coeficiente de velocidad disminuye"{
+    juego.velocidad(1)
     homero.come(rosquilla)
-    assert.that(homero.velocidad()>1)
+    assert.that(juego.velocidad()<1)
+  }
+
+  test "cuando homero come una silla de plastico pierde"{
+    silla.interactua(homero)
+    assert.equals(tiempo.timer(),0)
+  }
+
+  test "cuando homero come té resta puntos"{
+    homero.puntos(50)
+    homero.come(te)
+    assert.that(homero.puntos()<50)
+  }
+
+  test "cuando homero tiene 100 puntos gana el nivel"{
+    homero.puntos(100)
+    juego.verificarFinDeNivel()
+    assert.equals(nivel1.estado(),"ganado")
   }
 
 

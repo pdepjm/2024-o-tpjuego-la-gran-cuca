@@ -6,10 +6,7 @@ import tableros.*
 
 program homeroGame{
 
-	if(nivel1.estado() == "inicio"){
-		nivel1.iniciarFondo()
-		keyboard.num1().onPressDo({nivel1.iniciarNivel()})
-	}
-
+	juego.nivelActual().iniciarFondo()
+	keyboard.num1().onPressDo({juego.nivelActual().iniciarNivel()})
 
 }

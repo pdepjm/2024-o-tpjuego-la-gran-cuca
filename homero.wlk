@@ -4,11 +4,8 @@ import niveles.*
 
 object homero{
   var puntos = 0
-  var velocidad = 1
   var position = new MutablePosition(x=(game.width()/2).roundUp(), y=0)
   var ultimaComida = rosquilla
-
-  method velocidad() = velocidad
 
   method ultimaComida(comida){
     ultimaComida = comida
@@ -20,20 +17,11 @@ object homero{
 
   method come(comida) {
     ultimaComida = comida
-    self.puntos(comida.puntos())
-    self.velocidad(comida.velocidad())
+    self.sumarPuntos(comida.puntos())
+    juego.velocidad(comida.velocidad())
   }
 
   method position() = position
-
-  method setPuntos(nuevosPuntos){
-    puntos = nuevosPuntos
-    juego.verificarFinDeNivel()
-  }
-
-  method setVelocidad(x){
-    velocidad = x
-  }
 
   method moverseIzquierda(){
     ultimaComida.moverseAtras(position)
@@ -43,14 +31,16 @@ object homero{
     ultimaComida.moverseAdelante(position)
   }
 
-
   method puntos(nuevosPuntos){
-    puntos += nuevosPuntos
+    puntos = nuevosPuntos
     puntos = puntos.max(0)
+    juego.verificarFinDeNivel()
   }
 
-  method velocidad(nuevaVelocidad){
-    velocidad += nuevaVelocidad
+  method sumarPuntos(nuevosPuntos){
+    puntos += nuevosPuntos
+    puntos = puntos.max(0)
+    juego.verificarFinDeNivel()
   }
 
   method puntos() = puntos

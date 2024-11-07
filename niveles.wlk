@@ -12,13 +12,22 @@ import fondos.*
 
 object juego {
     var nivelActual = nivel1
+    var velocidad = 1 
 
     method verificarFinDeNivel(){
         nivelActual.verificarFinDeNivel()
-        if(nivelActual.estado() == "finalizado"){
+        if(nivelActual.estado() == "ganado"){
             nivelActual = nivel2
         }
     }
+
+    method nivelActual() = nivelActual
+
+    method velocidad(x){
+        velocidad = x
+    }
+
+    method velocidad() = velocidad
 }
 
 const nivel1 = new Nivel()
@@ -33,8 +42,8 @@ class Nivel{
     }
 
     method inicializarValores(){
-        homero.setPuntos(0)
-        homero.setVelocidad(1)
+        homero.puntos(0)
+        juego.velocidad(1)
         homero.ultimaComida(rosquilla)
         tiempo.timer(5*60)
         homero.positionX(game.width()/2)
@@ -63,11 +72,12 @@ class Nivel{
         game.removeVisual(mensajes)
         comidasNivel1.forEach({comida => game.addVisual(comida)})
 
-        game.onTick(1700 + homero.velocidad(), "baja", {rosquilla.bajar()})
-        game.onTick(1200 + homero.velocidad() , "baja", {banana.bajar()})
-        game.onTick(700 + homero.velocidad() , "baja", {choripan.bajar()})
-        game.onTick(1450 + homero.velocidad() , "baja", {cerveza.bajar()})
-        game.onTick(950 + homero.velocidad() , "baja", {plutonio.bajar()})
+        game.onTick(1000 * juego.velocidad(), "baja", {rosquilla.bajar()})
+        game.onTick(600 * juego.velocidad() , "baja", {banana.bajar()})
+        game.onTick(200 * juego.velocidad() , "baja", {choripan.bajar()})
+        game.onTick(800 * juego.velocidad() , "baja", {cerveza.bajar()})
+        game.onTick(400 * juego.velocidad() , "baja", {plutonio.bajar()})
+        game.onTick(250 * juego.velocidad() , "baja", {silla.bajar()})
 
         keyboard.a().onPressDo({homero.moverseIzquierda()})
         keyboard.d().onPressDo({homero.moverseDerecha()})
@@ -84,17 +94,16 @@ class Nivel{
     }
 
     method finalizarNivel(){
-        game.removeTickEvent("finalizarNivel")
         game.removeTickEvent("baja")
         game.removeTickEvent("restarSegundo")
         self.limpiarJuego()
         if(homero.puntos() < 100){
             game.addVisual(mensajeDerrota)
-            self.estado("finalizado")
+            self.estado("perdido")
         }else{
             game.addVisual(mensajeVictoria)
             game.addVisual(mensajeParaNivel2)
-            self.estado("finalizado")
+            self.estado("ganado")
             nivel2.estado("inicio")
             nivel2.inicializarValores()
             nivel2.iniciarFondo()
@@ -111,8 +120,8 @@ class Nivel{
 object nivel2 inherits Nivel(estado = "espera"){
 
     override method inicializarValores(){
-        homero.setPuntos(0)
-        homero.setVelocidad(1)
+        homero.puntos(0)
+        juego.velocidad(1)
         tiempo.timer(5*60)
         homero.positionX(game.width()/2)
         comidasNivel1.forEach({comida => comida.position().goUp(18)})
@@ -134,34 +143,34 @@ object nivel2 inherits Nivel(estado = "espera"){
 
     override method iniciarNivel(){
         self.estado("jugando")
-        game.onTick(1000, "restarSegundo", {tiempo.restarSegundo()})
-        game.onTick(1000, "finalizarNivel", {if((tiempo.timer() <= 0 || homero.puntos() >= 100) && self.estado()!="finalizado") self.finalizarNivel()})
         game.removeVisual(mensajeParaNivel2)
         comidasNivel2.forEach({comida => game.addVisual(comida)})
+        //lvl2
+        game.onTick(250 * juego.velocidad(), "baja", {mate.bajar()})
+        game.onTick(300 * juego.velocidad() , "baja", {te.bajar()})
+        game.onTick(500 * juego.velocidad(), "baja", {ensalada.bajar()})
+        game.onTick(700 * juego.velocidad() , "baja", {guiso.bajar()})
+        //lvl1
+        game.onTick(1000 * juego.velocidad(), "baja", {rosquilla.bajar()})
+        game.onTick(600 * juego.velocidad() , "baja", {banana.bajar()})
+        game.onTick(200 * juego.velocidad() , "baja", {choripan.bajar()})
+        game.onTick(800 * juego.velocidad() , "baja", {cerveza.bajar()})
+        game.onTick(400 * juego.velocidad() , "baja", {plutonio.bajar()})
+        game.onTick(250 * juego.velocidad() , "baja", {silla.bajar()})
 
-        game.onTick(450 + homero.velocidad(), "baja", {mate.bajar()})
-        game.onTick(700 + homero.velocidad(), "baja", {choripan.bajar()})
-        game.onTick(1200 + homero.velocidad(), "baja", {banana.bajar()})
-        game.onTick(950 + homero.velocidad(), "baja", {plutonio.bajar()})
-        game.onTick(1450 + homero.velocidad(), "baja", {cerveza.bajar()})
-        game.onTick(1700 + homero.velocidad(), "baja", {rosquilla.bajar()})
-        game.onTick(1950 + homero.velocidad() , "baja", {te.bajar()})
-        game.onTick(2200 + homero.velocidad(), "baja", {ensalada.bajar()})
-        game.onTick(2450 + homero.velocidad() , "baja", {guiso.bajar()})
-
+        game.onTick(1000, "restarSegundo", {tiempo.restarSegundo()})
     }
 
     override method finalizarNivel(){
-        game.removeTickEvent("finalizarNivel")
         game.removeTickEvent("baja")
         game.removeTickEvent("restarSegundo")
         self.limpiarJuego()
         if(homero.puntos() < 100){
             game.addVisual(mensajeDerrota)
-            self.estado("finalizado")
+            self.estado("perdido")
         }else{
             game.addVisual(mensajeVictoria)
-            self.estado("finalizado")
+            self.estado("ganado")
         }
     }
 
