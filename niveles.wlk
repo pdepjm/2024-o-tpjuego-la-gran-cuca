@@ -53,11 +53,13 @@ class Nivel{
 
     method iniciarFondo(){
         game.title("Homero en Springfield")
+        //meter en otro lado
         game.height(12)
         game.width(18)
         game.cellSize(100)
 
         game.boardGround("springfield.png")
+        //
         game.addVisual(puntosHomero)
         game.addVisual(mensajes)
         game.addVisual(homero)
@@ -67,6 +69,9 @@ class Nivel{
         game.start()
     }
 
+    //Hardcodear los valores de las comidas
+    //Que el ontick sea global y que el juego.velocidad() sea como un contador de ticks, en el que si pasa cierto tiempo
+    //baja la comida (para que se actualice en el juego)
     
     method iniciarNivel(){
         self.estado("jugando")
@@ -83,7 +88,7 @@ class Nivel{
         keyboard.a().onPressDo({homero.moverseIzquierda()})
         keyboard.d().onPressDo({homero.moverseDerecha()})
 
-        game.onCollideDo(homero, {cosa => cosa.interactua(homero)})
+        game.onCollideDo(homero, {cosa => cosa.interactua(homero) })
         
         game.onTick(1000, "restarSegundo", {tiempo.restarSegundo()})
     }

@@ -87,7 +87,7 @@ object noPierde{
 
     }
 }
-const rosquilla = new Comida(nombre="rosquilla", puntos=5, velocidad=0.75)
+const rosquilla = new Comida(nombre="rosquilla", puntos=5, velocidad=0)
 const banana = new Comida(nombre="banana", puntos=-3, velocidad=1.2)
 const plutonio = new Comida(nombre="plutonio", puntos=15, velocidad=0.25)
 const cerveza = new Comida(nombre="cerveza", puntos=15, velocidad=0.25,tipoAvance=aLaIzquierda)

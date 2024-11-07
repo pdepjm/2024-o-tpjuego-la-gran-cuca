@@ -13,4 +13,4 @@ Pueden existir objetos letales, como la silla, si homero interactúa con una sil
 
 ![image](https://github.com/user-attachments/assets/6bd0ffe8-0580-419d-8520-d92c076d3879)
 
-
+agregar nivel 2
