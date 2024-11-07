@@ -4,21 +4,28 @@ import tableros.*
 import wollok.game.*
 import fondos.*
 
-//Estados : inicio, jugando, finalizado
-// TODO: pensar la estructura general de cada nivel, y lo que difiere.
-// No repetir lo general. -> Pista, seguro usarán clases. 
-// Pista: quizás la herencia pueda ayudar también.
-// No repetir nada de lógica.
 
 object juego {
     var nivelActual = nivel1
     var velocidad = 1 
+    var contador = 0
+
+    method contador () = contador
+
+    method sumarContador(){
+        contador = contador + 100
+    }
 
     method verificarFinDeNivel(){
         nivelActual.verificarFinDeNivel()
         if(nivelActual.estado() == "ganado"){
             nivelActual = nivel2
         }
+    }
+
+    method actualizarCaida(){
+        game.removeTickEvent("baja")
+        self.nivelActual().bajarComidas()
     }
 
     method nivelActual() = nivelActual
@@ -39,6 +46,15 @@ class Nivel{
 
     method estado(x) {
       estado = x
+    }
+
+    method bajarComidas(){
+        //lvl1
+        game.onTick(rosquilla.velocidadCaida()* juego.velocidad(), "baja", {rosquilla.bajar()})
+        game.onTick(cerveza.velocidadCaida()* juego.velocidad(), "baja", {cerveza.bajar()})
+        game.onTick(banana.velocidadCaida()* juego.velocidad(), "baja", {banana.bajar()})
+        game.onTick(plutonio.velocidadCaida()* juego.velocidad(), "baja", {plutonio.bajar()})
+        game.onTick(silla.velocidadCaida()* juego.velocidad(), "baja", {silla.bajar()})
     }
 
     method inicializarValores(){
@@ -73,22 +89,22 @@ class Nivel{
     //Que el ontick sea global y que el juego.velocidad() sea como un contador de ticks, en el que si pasa cierto tiempo
     //baja la comida (para que se actualice en el juego)
     
+    //ACA: Un solo onTick que haga bajar todas las comidas, que tendrías un IF que cada cierta cantidad de onTicks. El onTick tiene que ser global del juego. 
+    //Contador de tick, un valor que se calcula de la propia velocidad y de la velocidad de la comida, y eso que sea divisor del contador que tengo. 
+    //hacer que los asserts sean mas lindos, corregir la velocidad
+
     method iniciarNivel(){
         self.estado("jugando")
         game.removeVisual(mensajes)
         comidasNivel1.forEach({comida => game.addVisual(comida)})
 
-        game.onTick(1000 * juego.velocidad(), "baja", {rosquilla.bajar()})
-        game.onTick(800 * juego.velocidad() , "baja", {banana.bajar()})
-        game.onTick(400 * juego.velocidad() , "baja", {choripan.bajar()})
-        game.onTick(900 * juego.velocidad() , "baja", {cerveza.bajar()})
-        game.onTick(500 * juego.velocidad() , "baja", {plutonio.bajar()})
-        game.onTick(200 * juego.velocidad() , "baja", {silla.bajar()})
-
         keyboard.a().onPressDo({homero.moverseIzquierda()})
         keyboard.d().onPressDo({homero.moverseDerecha()})
 
-        game.onCollideDo(homero, {cosa => cosa.interactua(homero) })
+
+        self.bajarComidas() 
+
+        game.onCollideDo(homero, {cosa => cosa.interactua(homero)})
         
         game.onTick(1000, "restarSegundo", {tiempo.restarSegundo()})
     }
@@ -125,6 +141,21 @@ class Nivel{
 
 object nivel2 inherits Nivel(estado = "espera"){
 
+    override method bajarComidas(){
+        //lvl1
+        game.onTick(rosquilla.velocidadCaida() * juego.velocidad() * 2, "baja", {rosquilla.bajar()})
+        game.onTick(cerveza.velocidadCaida()* juego.velocidad() * 2, "baja", {cerveza.bajar()})
+        game.onTick(banana.velocidadCaida()* juego.velocidad() * 2, "baja", {banana.bajar()})
+        game.onTick(plutonio.velocidadCaida()* juego.velocidad() * 2, "baja", {plutonio.bajar()})
+        game.onTick(silla.velocidadCaida()* juego.velocidad() * 2, "baja", {silla.bajar()})
+
+        //lvl2
+        game.onTick(mate.velocidadCaida() * juego.velocidad(), "baja", {mate.bajar()})
+        game.onTick(te.velocidadCaida() * juego.velocidad() , "baja", {te.bajar()})
+        game.onTick(ensalada.velocidadCaida() * juego.velocidad(), "baja", {ensalada.bajar()})
+        game.onTick(guiso.velocidadCaida() * juego.velocidad() , "baja", {guiso.bajar()})
+    }
+
     override method iniciarFondo(){
         game.title("Homero en El Obelisco")
 
@@ -143,18 +174,8 @@ object nivel2 inherits Nivel(estado = "espera"){
         self.estado("jugando")
         game.removeVisual(mensajeParaNivel2)
         comidasNivel2.forEach({comida => game.addVisual(comida)})
-        //lvl2
-        game.onTick(1200 * juego.velocidad(), "baja", {mate.bajar()})
-        game.onTick(500 * juego.velocidad() , "baja", {te.bajar()})
-        game.onTick(600 * juego.velocidad(), "baja", {ensalada.bajar()})
-        game.onTick(1500 * juego.velocidad() , "baja", {guiso.bajar()})
-        //lvl1
-        game.onTick(1200 * juego.velocidad(), "baja", {rosquilla.bajar()})
-        game.onTick(1300 * juego.velocidad() , "baja", {banana.bajar()})
-        game.onTick(1400 * juego.velocidad() , "baja", {choripan.bajar()})
-        game.onTick(800 * juego.velocidad() , "baja", {cerveza.bajar()})
-        game.onTick(1000 * juego.velocidad() , "baja", {plutonio.bajar()})
-        game.onTick(200 * juego.velocidad() , "baja", {silla.bajar()})
+
+        self.bajarComidas()
     
         game.onTick(1000, "restarSegundo", {tiempo.restarSegundo()})
     }
@@ -174,6 +195,5 @@ object nivel2 inherits Nivel(estado = "espera"){
 
 }
 
-//Estados nivel2 : espera,inicio, jugando, finalizado
 
 

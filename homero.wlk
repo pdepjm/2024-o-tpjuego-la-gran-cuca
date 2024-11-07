@@ -17,8 +17,9 @@ object homero{
 
   method come(comida) {
     ultimaComida = comida
-    self.sumarPuntos(comida.puntos())
     juego.velocidad(comida.velocidad())
+    juego.actualizarCaida()
+    self.sumarPuntos(comida.puntos())
   }
 
   method position() = position
@@ -47,10 +48,3 @@ object homero{
   
   method image() = "homero-"+ ultimaComida.image()
 }
-
-// Usar bastante polimorfismo. Podemos usarlo con los objetos que caen (las caracteristicas de los objetos, comportamientios, efectos sobre Homero, puntos, 
-// si tiene un efecto de mejora o peora sobre Homero que le cambie la imagen de él), la imagen de fondo por cada nivel, (efectos de sonido, musica para mas adelante)
-// Ivo da permiso para repetir el permiso "bajá" -> Importante
-// Dos niveles con fondos distintos (idealmente)
-// Para pasar de nivel tenemos que matar el código del 1er nivel para se que incorpore el siguiente y asi sucesivamente 
-// No poner en Tests colisiones o ticks

@@ -5,12 +5,9 @@ import comida.*
 import tableros.*
 
 describe "homero" {
-  // TODO: Hay que testear funcionalidad interesante, lógica del juego.
   test "Homero inicia con 0 puntos" {
     assert.equals(homero.puntos(), 0)
   }
-
-  // TODO: Si quieren chequear igualdad, deben usar .equals
 
   test "Homero inicia en la posicion x=mitad de la pantalla, y=0" {
     assert.equals(homero.position().x(), (game.width()/2).roundUp())
@@ -84,11 +81,4 @@ describe "homero" {
     assert.equals(nivel1.estado(),"ganado")
   }
 
-
-  // TODO: tests de los distintos comportamientos de las comidas
-  //  (o sea que la velocidad y los puntos se aumenten correctamente)
-  // TODO: test que se mueve correctamente de acuerdo a la velocidad (la cantidad de casillas)
-  // TODO: tests de distintos casos de movimientos (por ejemplo que no salga de la pantalla)
-  // Pensar los casos de tests que yo quiero probar. (escribir con texto)
-  // Elijan algún conjunto lindo y cerrado para testear.
 }

@@ -1,18 +1,21 @@
 import homero.*
 import wollok.game.*
 import tableros.*
-
-// TODO: La velocidad no debe ser la de homero, sino el coeficiente general de tick de caída
-// TODO: Deben existir cosas que no conviene agarrar (silla de plástico) porque pierden de una
-// TODO: Cuando agarra la cerveza se invierten los movimientos -> NO VALE USAR IF EN NINGUN LADO
-// POLEMORFESMOOOOOOOOO
+import niveles.*
 
 class Comida{
     var property nombre
     var property puntos
     var property velocidad
+    var property velocidadCaida 
     const tipoAvance = aLaDerecha
     const fulminante = noPierde
+
+    method velocidadCaida() = velocidadCaida
+
+    method velocidadCaida(nuevaVelocidad){
+        velocidadCaida = nuevaVelocidad
+    }
 
     var position = new MutablePosition(x=(0..game.width()).anyOne()*2, y=game.height())
     
@@ -25,10 +28,10 @@ class Comida{
 
     method bajar(){
         if (position.y() >= -2){
-            position.goDown(2)
+            position.goDown(1)
         }else{
             game.removeVisual(self)
-            position.goUp(18)
+            position.goUp(game.height())
             self.positionX((0..(game.width()-2)).anyOne())
             game.addVisual(self)
         } 
@@ -87,16 +90,16 @@ object noPierde{
 
     }
 }
-const rosquilla = new Comida(nombre="rosquilla", puntos=5, velocidad=0)
-const banana = new Comida(nombre="banana", puntos=-3, velocidad=1.2)
-const plutonio = new Comida(nombre="plutonio", puntos=15, velocidad=0.25)
-const cerveza = new Comida(nombre="cerveza", puntos=15, velocidad=0.25,tipoAvance=aLaIzquierda)
-const choripan = new Comida(nombre="choripan", puntos=7, velocidad=0.5)
-const mate = new Comida(nombre="mate", puntos=20, velocidad=0.1)
-const te = new Comida(nombre="te", puntos=-50, velocidad=2)
-const ensalada = new Comida(nombre="ensalada", puntos=-15, velocidad=1.75)
-const guiso = new Comida(nombre="guiso", puntos=15, velocidad=0.75)
-const silla = new Comida(nombre="silla", puntos=-100, velocidad=1, fulminante=pierde)
+const rosquilla = new Comida(nombre="rosquilla", puntos=5, velocidad=0, velocidadCaida=1500)
+const banana = new Comida(nombre="banana", puntos=-3, velocidad=1.2, velocidadCaida=1400)
+const plutonio = new Comida(nombre="plutonio", puntos=15, velocidad=0.25, velocidadCaida=1300)
+const cerveza = new Comida(nombre="cerveza", puntos=15, velocidad=0.25, velocidadCaida=1200, tipoAvance=aLaIzquierda)
+const choripan = new Comida(nombre="choripan", puntos=7, velocidad=0.5, velocidadCaida=1100)
+const mate = new Comida(nombre="mate", puntos=20, velocidad=0.1, velocidadCaida=1000)
+const te = new Comida(nombre="te", puntos=-50, velocidad=2, velocidadCaida=900)
+const ensalada = new Comida(nombre="ensalada", puntos=-15, velocidad=1.75, velocidadCaida=800)
+const guiso = new Comida(nombre="guiso", puntos=15, velocidad=0.75, velocidadCaida=700)
+const silla = new Comida(nombre="silla", puntos=-100, velocidad=1, velocidadCaida=600, fulminante=pierde)
 
 const comidasNivel1 = [rosquilla, banana, plutonio, choripan, cerveza,silla]
 const comidasNivel2 = comidasNivel1 + [mate,ensalada,guiso,te]
